@@ -9,8 +9,12 @@ public class Disabled extends Main {
   public static void main(String[] args) {
     driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
-    
-
+   boolean isEnabled = driver.findElement(By.name("my-disabled")).isEnabled();
+    if (isEnabled){
+      System.out.println("enabled");
+    }else{
+      System.out.println("disabled");
+    }
     driver.quit();
   }
 }

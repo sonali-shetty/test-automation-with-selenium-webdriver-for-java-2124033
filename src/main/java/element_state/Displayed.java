@@ -9,7 +9,12 @@ public class Displayed extends Main {
   public static void main(String[] args) {
     driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
-    
+    boolean isVisible = driver.findElement(By.name("my-hidden")).isDisplayed();
+    if(isVisible){
+      System.out.println("Yes visible");
+    }else{
+      System.out.println("not visible");
+    }
 
     driver.quit();
   }

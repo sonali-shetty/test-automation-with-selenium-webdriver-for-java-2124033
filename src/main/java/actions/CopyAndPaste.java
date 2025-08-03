@@ -12,6 +12,26 @@ public class CopyAndPaste extends Main {
   public static void main(String[] args){
     driver.get("https://www.selenium.dev/selenium/web/formPage.html");
 
+    var field1 = driver.findElement(By.id("withText"));
+    var field2 = driver.findElement(By.id("emptyTextArea"));
+
+    Keys cmdCtrl = Platform.getCurrent().is(Platform.MAC) ? Keys.COMMAND : Keys.CONTROL;
+
+   Actions actions = new Actions(driver);
+   actions.click(field1)
+   .keyDown(cmdCtrl)
+   .sendKeys("a")
+   .sendKeys("c")
+   .keyUp(cmdCtrl)
+   .perform();
+
+   actions.click(field2)
+   .keyDown(cmdCtrl)
+   .sendKeys("v")
+   .keyUp(cmdCtrl)
+   .perform();
+
+
 
 
     //driver.quit();

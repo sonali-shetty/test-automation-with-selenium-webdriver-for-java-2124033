@@ -14,17 +14,26 @@ public class Screenshots extends Main {
 
   public static void main(String[] args) {
     driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+    var browsingcontext = new BrowsingContext(driver, driver.getWindowHandle());
 
     
 
     // FULL PAGE
     
-
+    String fullScreenshot = browsingcontext.captureScreenshot();
+    saveScreenshot(fullScreenshot, "fullScreenshot.png");
     // ELEMENT
-    
-
+    WebElement mycolors = driver.findElement(By.name("my-colors"));
+    String internalElementId = ((RemoteWebElement) mycolors).getId();
+    String elementScreenshot = browsingcontext.captureElementScreenshot(internalElementId);
+    saveScreenshot(elementScreenshot, "elementScreenshot.png");
     // VIEWPORT
-    
+    driver.findElement(By.name("my-date")).click();
+    var datePicker = driver.findElement(By.className("datepicker")).getRect();
+    String viewPortScreenshot = browsingcontext.captureBoxScreenshot(datePicker.getX(),
+     datePicker.getY(), datePicker.getWidth(), datePicker.getHeight());
+     saveScreenshot(viewPortScreenshot, 
+     "viewPortScreenshot.png");
     
     driver.quit();
   }
